@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    Laboratory Screen - Troop Upgrade Screen (CoC Style)
+    Controller: com.clashgame.client.controller.LaboratoryController
+    
+    Beautiful card-based troop selection with stats display.
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.clashgame.client.controller.LaboratoryController"
+            prefWidth="900" prefHeight="650"
+            styleClass="game-bg"
+            stylesheets="@../css/game_style.css">
+
+    <!-- Top: Title Bar with Lab info -->
+    <top>
+        <VBox spacing="0">
+            <HBox spacing="20" alignment="CENTER" styleClass="top-bar">
+                <Label text="🧪 Laboratory" style="-fx-text-fill: #00e5ff; -fx-font-size: 22; -fx-font-weight: bold;
+                       -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.5), 8, 0, 0, 0);"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox spacing="3" alignment="CENTER">
+                    <Label text="🧪" style="-fx-font-size: 16;"/>
+                    <Label fx:id="labLevelLabel" text="Lab Level: 0"
+                           style="-fx-text-fill: #00e5ff; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                </HBox>
+                <HBox spacing="3" alignment="CENTER">
+                    <Label text="💧" style="-fx-font-size: 16;"/>
+                    <Label fx:id="elixirLabel" text="Elixir: 0"
+                           style="-fx-text-fill: #9b59b6; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                </HBox>
+            </HBox>
+            <!-- Lab Status Bar -->
+            <HBox fx:id="labStatusBar" spacing="10" alignment="CENTER"
+                  style="-fx-background-color: rgba(0,30,60,0.9); -fx-padding: 8 20;
+                         -fx-border-color: #00838f; -fx-border-width: 0 0 1 0;">
+                <Label fx:id="labStatusLabel" text="Laboratory is idle"
+                       style="-fx-text-fill: #80deea; -fx-font-size: 13;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <ProgressBar fx:id="labProgressBar" prefWidth="200" prefHeight="16"
+                             progress="0" visible="false"/>
+                <Label fx:id="labTimerLabel" text="" style="-fx-text-fill: #ffab40; -fx-font-size: 12;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Center: Troop Selection Cards Grid -->
+    <center>
+        <VBox spacing="12" alignment="TOP_CENTER">
+            <padding><Insets top="15" right="20" bottom="10" left="20"/></padding>
+
+            <Label text="Select a troop to upgrade:"
+                   style="-fx-text-fill: #b0bec5; -fx-font-size: 14;"/>
+
+            <!-- Troop Cards Grid -->
+            <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;
+                        -fx-border-color: transparent;" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER"
+                        prefHeight="220">
+                <FlowPane fx:id="troopCardsPane" hgap="12" vgap="12" alignment="CENTER"
+                          style="-fx-padding: 5;">
+                    <!-- Cards are added dynamically by controller -->
+                </FlowPane>
+            </ScrollPane>
+
+            <!-- Separator -->
+            <Separator style="-fx-padding: 5 0;"/>
+
+            <!-- Selected Troop Detail Panel -->
+            <HBox spacing="20" alignment="CENTER">
+                <!-- Left: Troop Visual Card -->
+                <VBox fx:id="troopDetailCard" spacing="8" alignment="CENTER" prefWidth="200" prefHeight="260"
+                      style="-fx-background-color: rgba(0,50,80,0.85); -fx-border-color: #00838f;
+                             -fx-border-width: 2; -fx-border-radius: 12; -fx-background-radius: 12;
+                             -fx-padding: 15; -fx-effect: dropshadow(gaussian, rgba(0,150,200,0.3), 12, 0, 0, 4);"
+                      visible="false" managed="false">
+                    <Label fx:id="selectedTroopEmoji" text="⚔"
+                           style="-fx-font-size: 48; -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.5), 6, 0, 0, 0);"/>
+                    <Label fx:id="selectedTroopName" text="Barbarian"
+                           style="-fx-text-fill: #FFD700; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                    <Label fx:id="selectedTroopLevel" text="Level 1"
+                           style="-fx-text-fill: #80deea; -fx-font-size: 14;"/>
+                    <Label fx:id="selectedTroopRole" text="Melee Attacker"
+                           style="-fx-text-fill: #b0bec5; -fx-font-size: 11;"/>
+                    <HBox spacing="4" alignment="CENTER">
+                        <Label fx:id="selectedTroopMaxLevel" text="Max Lv: 8"
+                               style="-fx-text-fill: #ffab40; -fx-font-size: 11;"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Center: Stats Comparison (Current vs Next Level) -->
+                <VBox fx:id="statsPanel" spacing="6" alignment="CENTER" prefWidth="320"
+                      style="-fx-background-color: rgba(20,40,60,0.85); -fx-border-color: #37474f;
+                             -fx-border-width: 1; -fx-border-radius: 10; -fx-background-radius: 10;
+                             -fx-padding: 15;"
+                      visible="false" managed="false">
+                    <Label text="📊 Stats Comparison"
+                           style="-fx-text-fill: #FFD700; -fx-font-size: 15; -fx-font-weight: bold;"/>
+
+                    <!-- Stats Grid: Current -> Next -->
+                    <GridPane hgap="10" vgap="6" alignment="CENTER">
+                        <Label text="" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Current" style="-fx-text-fill: #78909c; -fx-font-size: 11; -fx-font-weight: bold;"
+                               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <Label text="→" style="-fx-text-fill: #546e7a; -fx-font-size: 11;"
+                               GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                        <Label text="Next Lv" style="-fx-text-fill: #4caf50; -fx-font-size: 11; -fx-font-weight: bold;"
+                               GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                        <!-- HP Row -->
+                        <Label text="❤ Hitpoints" style="-fx-text-fill: #ef5350; -fx-font-size: 12;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <Label fx:id="currentHpLabel" text="50" style="-fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold;"
+                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label text="→" style="-fx-text-fill: #4caf50; -fx-font-size: 13;"
+                               GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                        <Label fx:id="nextHpLabel" text="55" style="-fx-text-fill: #4caf50; -fx-font-size: 13; -fx-font-weight: bold;"
+                               GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                        <!-- ATK Row -->
+                        <Label text="⚔ Damage" style="-fx-text-fill: #ff9800; -fx-font-size: 12;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <Label fx:id="currentAtkLabel" text="20" style="-fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold;"
+                               GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label text="→" style="-fx-text-fill: #4caf50; -fx-font-size: 13;"
+                               GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                        <Label fx:id="nextAtkLabel" text="22" style="-fx-text-fill: #4caf50; -fx-font-size: 13; -fx-font-weight: bold;"
+                               GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+                        <!-- SPD Row -->
+                        <Label text="💨 Speed" style="-fx-text-fill: #29b6f6; -fx-font-size: 12;"
+                               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <Label fx:id="currentSpdLabel" text="8" style="-fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold;"
+                               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label text="→" style="-fx-text-fill: #4caf50; -fx-font-size: 13;"
+                               GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                        <Label fx:id="nextSpdLabel" text="8" style="-fx-text-fill: #4caf50; -fx-font-size: 13; -fx-font-weight: bold;"
+                               GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+                    </GridPane>
+
+                    <Separator style="-fx-padding: 4 0;"/>
+
+                    <!-- Upgrade Cost & Time -->
+                    <HBox spacing="20" alignment="CENTER">
+                        <VBox alignment="CENTER" spacing="2">
+                            <Label text="Cost" style="-fx-text-fill: #78909c; -fx-font-size: 10;"/>
+                            <Label fx:id="upgradeCostLabel" text="💧 500"
+                                   style="-fx-text-fill: #ce93d8; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="2">
+                            <Label text="Time" style="-fx-text-fill: #78909c; -fx-font-size: 10;"/>
+                            <Label fx:id="upgradeTimeLabel" text="⏱ 30s"
+                                   style="-fx-text-fill: #ffab40; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="2">
+                            <Label text="Req. Lab" style="-fx-text-fill: #78909c; -fx-font-size: 10;"/>
+                            <Label fx:id="reqLabLabel" text="🧪 Lv1"
+                                   style="-fx-text-fill: #00e5ff; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Upgrade Button -->
+                    <Button fx:id="upgradeButton" text="⬆ Upgrade" onAction="#onUpgradeClicked"
+                            prefWidth="200" prefHeight="40"
+                            styleClass="button-lab-upgrade"
+                            style="-fx-font-size: 15; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+
+                    <Label fx:id="upgradeStatusLabel" text=""
+                           style="-fx-text-fill: #e74c3c; -fx-font-size: 11;" wrapText="true"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Back Button -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 12;">
+            <Button text="← Back to Dashboard" onAction="#onBackClicked"
+                    style="-fx-background-color: #455a64; -fx-text-fill: white; -fx-font-size: 14;
+                           -fx-background-radius: 8;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,462 @@
+/*
+ * ═══════════════════════════════════════════════════════
+ *  Clash of Clans Mini - Game Style CSS
+ * ═══════════════════════════════════════════════════════
+ *  Dark medieval theme with gold accents
+ */
+
+/* ─── Global ──────────────────────────────────────── */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* ─── Buttons ────────────────────────────────────── */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #FFD700, #DAA520);
+    -fx-text-fill: #2C1810;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2);
+    -fx-transition: all 0.2s;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #FFE44D, #FFD700);
+    -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.6), 12, 0, 0, 0);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #DAA520, #B8860B);
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.button:disabled {
+    -fx-background-color: linear-gradient(to bottom, #888, #666);
+    -fx-text-fill: #aaa;
+    -fx-opacity: 0.6;
+}
+
+.button-danger {
+    -fx-background-color: linear-gradient(to bottom, #FF6B6B, #DC3545);
+    -fx-text-fill: white;
+}
+
+/* ─── Labels ─────────────────────────────────────── */
+.label {
+    -fx-text-fill: #F5E6D3;
+}
+
+.label-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFD700;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 4, 0, 0, 2);
+}
+
+.label-resource {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ─── Text Fields ────────────────────────────────── */
+.text-field {
+    -fx-background-color: #3A2A1A;
+    -fx-text-fill: #F5E6D3;
+    -fx-prompt-text-fill: #8B7355;
+    -fx-border-color: #DAA520;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+}
+
+.text-field:focused {
+    -fx-border-color: #FFD700;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.4), 8, 0, 0, 0);
+}
+
+.password-field {
+    -fx-background-color: #3A2A1A;
+    -fx-text-fill: #F5E6D3;
+    -fx-border-color: #DAA520;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+}
+
+/* ─── Panels / VBox / HBox ───────────────────────── */
+.game-panel {
+    -fx-background-color: rgba(44, 24, 16, 0.92);
+    -fx-border-color: #DAA520;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 4);
+}
+
+.resource-bar {
+    -fx-background-color: linear-gradient(to right, #2C1810, #3A2A1A);
+    -fx-padding: 10;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* ─── Tables ─────────────────────────────────────── */
+.table-view {
+    -fx-background-color: #2C1810;
+    -fx-border-color: #DAA520;
+}
+
+.table-view .column-header {
+    -fx-background-color: linear-gradient(to bottom, #3A2A1A, #2C1810);
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #FFD700;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell {
+    -fx-background-color: #2C1810;
+    -fx-border-color: #3A2A1A;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4A3A2A;
+}
+
+/* ─── List View (Chat) ───────────────────────────── */
+.list-view {
+    -fx-background-color: #1A0F0A;
+    -fx-border-color: #DAA520;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F5E6D3;
+    -fx-padding: 4 8;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #3A2A1A;
+}
+
+/* ─── Progress Bars ──────────────────────────────── */
+.progress-bar {
+    -fx-accent: #FFD700;
+}
+
+.progress-bar .track {
+    -fx-background-color: #3A2A1A;
+    -fx-border-color: #DAA520;
+}
+
+/* ─── Scroll Bars ────────────────────────────────── */
+.scroll-bar {
+    -fx-background-color: #2C1810;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #DAA520;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+}
+
+/* ─── Canvas Container ───────────────────────────── */
+.canvas-container {
+    -fx-border-color: #DAA520;
+    -fx-border-width: 2;
+    -fx-background-color: #1A3A1A;
+}
+
+/* ─── Top Bar / Resource Bar ─────────────────────── */
+.top-bar {
+    -fx-background-color: linear-gradient(to bottom, #3A2A1A, #2C1810);
+    -fx-padding: 10 20;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* ─── Battle HUD ─────────────────────────────────── */
+.battle-hud {
+    -fx-background-color: rgba(20, 10, 5, 0.9);
+    -fx-padding: 10 20;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 0 0 2 0;
+}
+
+.battle-tray {
+    -fx-background-color: rgba(20, 10, 5, 0.9);
+    -fx-padding: 12 20;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 2 0 0 0;
+}
+
+/* ─── Side Panel ─────────────────────────────────── */
+.side-panel {
+    -fx-background-color: rgba(44, 24, 16, 0.95);
+    -fx-padding: 15;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 0 0 0 2;
+}
+
+/* ─── Chat Panel ─────────────────────────────────── */
+.chat-panel {
+    -fx-background-color: rgba(44, 24, 16, 0.95);
+    -fx-padding: 10;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 0 0 0 2;
+}
+
+/* ─── Button Variants ─────────────────────────────── */
+.button-success {
+    -fx-background-color: linear-gradient(to bottom, #2ECC71, #27AE60);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-success:hover {
+    -fx-background-color: linear-gradient(to bottom, #3DDB80, #2ECC71);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.button-attack {
+    -fx-background-color: linear-gradient(to bottom, #E74C3C, #C0392B);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-attack:hover {
+    -fx-background-color: linear-gradient(to bottom, #FF6B6B, #E74C3C);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.button-train {
+    -fx-background-color: linear-gradient(to bottom, #9B59B6, #8E44AD);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-train:hover {
+    -fx-background-color: linear-gradient(to bottom, #AF6FCE, #9B59B6);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.button-leaderboard {
+    -fx-background-color: linear-gradient(to bottom, #F39C12, #E67E22);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-leaderboard:hover {
+    -fx-background-color: linear-gradient(to bottom, #FFB347, #F39C12);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.button-secondary {
+    -fx-background-color: linear-gradient(to bottom, #95A5A6, #7F8C8D);
+    -fx-text-fill: white;
+}
+
+.button-surrender {
+    -fx-background-color: linear-gradient(to bottom, #E74C3C, #C0392B);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* ─── Game Background ────────────────────────────── */
+.game-bg {
+    -fx-background-color: linear-gradient(to bottom, #1A0F0A, #2C1810);
+}
+
+.login-bg {
+    -fx-background-color: linear-gradient(to bottom, #1a1a2e, #16213e);
+}
+
+/* ─── Login Panel ────────────────────────────────── */
+.login-panel {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(218, 165, 32, 0.5);
+    -fx-border-radius: 12;
+    -fx-border-width: 1.5;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 16, 0, 0, 6);
+}
+
+/* ─── Star Label ─────────────────────────────────── */
+.star-label {
+    -fx-text-fill: gold;
+    -fx-font-size: 24;
+    -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.3), 4, 0, 0, 0);
+}
+
+/* ─── Combo Box ──────────────────────────────────── */
+.combo-box {
+    -fx-background-color: #3A2A1A;
+    -fx-border-color: #DAA520;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #2C1810;
+    -fx-border-color: #DAA520;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #3A2A1A;
+    -fx-text-fill: #F5E6D3;
+    -fx-padding: 6 10;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #4A3A2A;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #5A4A3A;
+    -fx-text-fill: #FFD700;
+}
+
+/* ─── Spinner ────────────────────────────────────── */
+.spinner {
+    -fx-background-color: #3A2A1A;
+    -fx-border-color: #DAA520;
+    -fx-border-radius: 6;
+}
+
+.spinner .text-field {
+    -fx-background-color: #3A2A1A;
+    -fx-text-fill: #F5E6D3;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #DAA520;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #FFD700;
+}
+
+/* ─── Tooltip ────────────────────────────────────── */
+.tooltip {
+    -fx-background-color: rgba(44, 24, 16, 0.95);
+    -fx-text-fill: #F5E6D3;
+    -fx-border-color: #DAA520;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+    -fx-font-size: 12;
+}
+
+/* ─── Status / Info Labels ───────────────────────── */
+.label-success {
+    -fx-text-fill: #2ecc71;
+    -fx-font-weight: bold;
+}
+
+.label-error {
+    -fx-text-fill: #e74c3c;
+    -fx-font-weight: bold;
+}
+
+.label-warning {
+    -fx-text-fill: #f39c12;
+    -fx-font-weight: bold;
+}
+
+.label-muted {
+    -fx-text-fill: #8B7355;
+    -fx-font-size: 12px;
+}
+
+/* ─── Separator ──────────────────────────────────── */
+.separator .line {
+    -fx-border-color: #DAA520;
+    -fx-border-width: 0.5 0 0 0;
+}
+
+/* ─── Tab Pane (for future screens) ──────────────── */
+.tab-pane .tab-header-background {
+    -fx-background-color: #2C1810;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #3A2A1A;
+    -fx-border-color: #DAA520;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #4A3A2A;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #F5E6D3;
+}
+
+/* ─── Disabled state for interactive elements ────── */
+.combo-box:disabled,
+.spinner:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* ─── Resource icon highlight ────────────────────── */
+.resource-icon {
+    -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.3), 4, 0, 0, 0);
+}
+
+/* ─── Laboratory Button ─────────────────────────── */
+.button-laboratory {
+    -fx-background-color: linear-gradient(to bottom, #00BCD4, #00838F);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button-laboratory:hover {
+    -fx-background-color: linear-gradient(to bottom, #26C6DA, #00BCD4);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(0,188,212,0.6), 12, 0, 0, 0);
+}
+
+/* ─── Laboratory Upgrade Button ──────────────────── */
+.button-lab-upgrade {
+    -fx-background-color: linear-gradient(to bottom, #00BCD4, #00838F);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.button-lab-upgrade:hover {
+    -fx-background-color: linear-gradient(to bottom, #26C6DA, #00BCD4);
+    -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.5), 10, 0, 0, 0);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.button-lab-upgrade:disabled {
+    -fx-background-color: linear-gradient(to bottom, #546E7A, #455A64);
+    -fx-text-fill: #90A4AE;
+    -fx-opacity: 0.7;
+}

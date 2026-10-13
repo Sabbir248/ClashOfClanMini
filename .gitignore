@@ -1,0 +1,16 @@
+# Maven build output
+**/target/
+
+# IDE metadata
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Runtime and crash logs
+*.log
+
+# Local database and environment files
+.env
+*.local

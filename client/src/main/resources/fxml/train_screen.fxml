@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    Train Units Screen
+    Controller: com.clashgame.client.controller.TrainController
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.clashgame.client.controller.TrainController"
+            prefWidth="800" prefHeight="600"
+            styleClass="game-bg"
+            stylesheets="@../css/game_style.css">
+
+    <!-- Top: Title Bar -->
+    <top>
+        <HBox spacing="20" alignment="CENTER" styleClass="top-bar">
+            <Label text="🗡 Train Units" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="elixirLabel" text="Elixir: 0"
+                   style="-fx-text-fill: #9b59b6; -fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label fx:id="armySizeLabel" text="Army: 0/30"
+                   style="-fx-text-fill: #3498db; -fx-font-size: 14; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Center: Unit Selection Grid -->
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER">
+            <padding><Insets top="15" right="20" bottom="10" left="20"/></padding>
+
+            <Label text="Select a troop to train:" style="-fx-text-fill: #b0bec5; -fx-font-size: 14;"/>
+
+            <!-- Troop Cards Grid (like Laboratory) -->
+            <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;
+                        -fx-border-color: transparent;" vbarPolicy="NEVER" hbarPolicy="NEVER"
+                        prefHeight="150">
+                <FlowPane fx:id="troopCardsPane" hgap="12" vgap="12" alignment="CENTER"
+                          style="-fx-padding: 5;">
+                    <!-- Cards are added dynamically by controller -->
+                </FlowPane>
+            </ScrollPane>
+
+            <!-- Selected Troop Detail + Train Controls -->
+            <HBox spacing="15" alignment="CENTER">
+                <!-- Left: Troop Info Card -->
+                <VBox fx:id="troopDetailCard" spacing="6" alignment="CENTER" prefWidth="180" prefHeight="180"
+                      style="-fx-background-color: rgba(0,50,80,0.85); -fx-border-color: #00838f;
+                             -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10;
+                             -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0,150,200,0.3), 10, 0, 0, 3);"
+                      visible="false" managed="false">
+                    <Label fx:id="selectedTroopEmoji" text="⚔" style="-fx-font-size: 36;"/>
+                    <Label fx:id="selectedTroopName" text="" style="-fx-text-fill: #FFD700; -fx-font-size: 16; -fx-font-weight: bold;"/>
+                    <Label fx:id="unitInfoLabel" text="" style="-fx-text-fill: #b0bec5; -fx-font-size: 11;" wrapText="true"/>
+                </VBox>
+
+                <!-- Center: Stats + Train -->
+                <VBox fx:id="trainPanel" spacing="8" alignment="CENTER" prefWidth="320"
+                      style="-fx-background-color: rgba(20,40,60,0.85); -fx-border-color: #37474f;
+                             -fx-border-width: 1; -fx-border-radius: 10; -fx-background-radius: 10;
+                             -fx-padding: 12;"
+                      visible="false" managed="false">
+                    <Label fx:id="statsInfoLabel" text=""
+                           style="-fx-text-fill: #e0e0e0; -fx-font-size: 12;" wrapText="true"/>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Label text="Quantity:" style="-fx-text-fill: #b0bec5; -fx-font-size: 13;"/>
+                        <Spinner fx:id="countSpinner" prefWidth="80"/>
+                        <Button fx:id="trainButton" text="⚔ Train" onAction="#onTrainClicked"
+                                style="-fx-background-color: linear-gradient(to bottom, #27ae60, #1e8449);
+                                       -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14;
+                                       -fx-background-radius: 8;"/>
+                    </HBox>
+                    <Label fx:id="statusLabel" text="" style="-fx-text-fill: #e74c3c; -fx-font-size: 11;" wrapText="true"/>
+                </VBox>
+            </HBox>
+
+            <Separator style="-fx-padding: 3 0;"/>
+
+            <!-- Training Queue Display -->
+            <Label text="⏳ Training Queue:" style="-fx-text-fill: #f39c12; -fx-font-size: 14; -fx-font-weight: bold;"/>
+            <ListView fx:id="trainingQueueListView" prefHeight="60"
+                      style="-fx-background-color: #2c3e50; -fx-control-inner-background: #2c3e50;"/>
+            <Button fx:id="speedUpTrainingButton" text="💎 Speed Up Training" onAction="#onSpeedUpTrainingClicked"
+                    disable="true"
+                    style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;
+                           -fx-background-radius: 6;"/>
+
+            <!-- Current Army Display -->
+            <Label text="🗡 Current Army:" style="-fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold;"/>
+            <ListView fx:id="armyListView" prefHeight="100"
+                      style="-fx-background-color: #34495e; -fx-control-inner-background: #34495e;"/>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Back Button -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 15;">
+            <Button text="← Back to Dashboard" onAction="#onBackClicked"
+                    style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-size: 14;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

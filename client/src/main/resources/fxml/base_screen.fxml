@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    Base Building Screen Layout
+    Controller: com.clashgame.client.controller.BaseController
+    
+    Layout:
+    ┌──────────────────────────────────────────┐
+    │ [Resources]                     [Back]   │
+    ├─────────────────────────┬────────────────┤
+    │                         │ Building Info:  │
+    │                         │ Type: Cannon    │
+    │     BASE GRID           │ Level: 3        │
+    │     (Canvas 600x600)    │ HP: 500/500     │
+    │                         │ Defense: 30     │
+    │     20x20 cells         │                │
+    │                         │ [Select Type ▼] │
+    │                         │ [Place] [Upgrade]│
+    │                         │ [Remove]        │
+    └─────────────────────────┴────────────────┘
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.clashgame.client.controller.BaseController"
+            prefWidth="900" prefHeight="650"
+            styleClass="game-bg"
+            stylesheets="@../css/game_style.css">
+
+    <!-- Top: Resource bar + Back button -->
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT"
+              styleClass="top-bar">
+            <Label text="🏰 Base Editor"
+                   style="-fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="3">
+                <Label text="🪙" style="-fx-font-size: 14;"/>
+                <Label fx:id="goldLabel" text="500"
+                       style="-fx-text-fill: gold; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            </HBox>
+            <HBox spacing="3">
+                <Label text="💧" style="-fx-font-size: 14;"/>
+                <Label fx:id="elixirLabel" text="500"
+                       style="-fx-text-fill: #9b59b6; -fx-font-size: 13; -fx-font-weight: bold;"/>
+            </HBox>
+            <Button fx:id="backButton" text="← Back" onAction="#onBackClicked"
+                    style="-fx-background-color: #7f8c8d; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+
+    <!-- Center: Base Canvas -->
+    <center>
+        <Canvas fx:id="baseCanvas" width="600" height="600"/>
+    </center>
+
+    <!-- Right: Building Controls Panel -->
+    <right>
+        <VBox spacing="12" prefWidth="250"
+              styleClass="side-panel">
+
+            <Label text="Building Info"
+                   style="-fx-text-fill: #3498db; -fx-font-size: 15; -fx-font-weight: bold;"/>
+
+            <Separator/>
+
+            <Label fx:id="buildingInfoLabel"
+                   text="Click a building to select it"
+                   style="-fx-text-fill: white; -fx-font-size: 12;"
+                   wrapText="true"/>
+
+            <Separator/>
+
+            <Label text="Place New Building:"
+                   style="-fx-text-fill: #ecf0f1; -fx-font-size: 13;"/>
+
+            <ComboBox fx:id="buildingTypeCombo" promptText="Select type..."
+                      maxWidth="Infinity"/>
+
+            <Button fx:id="placeButton" text="📍 Place Building"
+                    onAction="#onPlaceBuildingClicked" maxWidth="Infinity"
+                    style="-fx-background-color: #27ae60; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>
+
+            <Separator/>
+
+            <Label text="Selected Building Actions:"
+                   style="-fx-text-fill: #ecf0f1; -fx-font-size: 13;"/>
+
+            <Button fx:id="upgradeButton" text="⬆ Upgrade" disable="true"
+                    onAction="#onUpgradeClicked" maxWidth="Infinity"
+                    style="-fx-background-color: #f39c12; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>
+
+            <Button fx:id="removeButton" text="🗑 Remove" disable="true"
+                    onAction="#onRemoveClicked" maxWidth="Infinity"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>
+
+            <Button fx:id="moveButton" text="↔ Move" disable="true"
+                    onAction="#onMoveClicked" maxWidth="Infinity"
+                    style="-fx-background-color: #2980b9; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>
+
+            <Button fx:id="speedUpButton" text="💎 Speed Up" disable="true"
+                    onAction="#onSpeedUpClicked" maxWidth="Infinity"
+                    style="-fx-background-color: #8e44ad; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>
+        </VBox>
+    </right>
+</BorderPane>

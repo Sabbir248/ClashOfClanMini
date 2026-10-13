@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    Leaderboard Screen Layout
+    Controller: com.clashgame.client.controller.LeaderboardController
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.clashgame.client.controller.LeaderboardController"
+            prefWidth="800" prefHeight="600"
+            styleClass="game-bg"
+            stylesheets="@../css/game_style.css">
+
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT"
+              styleClass="top-bar">
+            <Label text="🏆 Global Leaderboard"
+                   style="-fx-text-fill: gold; -fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>            <Button fx:id="refreshButton" text="🔄 Refresh" onAction="#onRefreshClicked"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>            <Button fx:id="backButton" text="← Back" onAction="#onBackClicked"
+                    style="-fx-background-color: #7f8c8d; -fx-text-fill: white;
+                           -fx-font-size: 12; -fx-background-radius: 5; -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="20" right="40" bottom="20" left="40"/>
+            </padding>
+
+            <TableView fx:id="leaderboardTable" prefHeight="450"
+                       style="-fx-background-color: #34495e;">
+                <columns>
+                    <TableColumn fx:id="rankColumn" text="Rank" prefWidth="60"/>
+                    <TableColumn fx:id="usernameColumn" text="Player" prefWidth="250"/>
+                    <TableColumn fx:id="levelColumn" text="Level" prefWidth="80"/>
+                    <TableColumn fx:id="trophiesColumn" text="🏆 Trophies" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    Login Screen Layout
+    Controller: com.clashgame.client.controller.LoginController
+    
+    Layout:
+    ┌──────────────────────────────┐
+    │        CLASH OF CLANS        │
+    │           MINI               │
+    │                              │
+    │   ┌──────────────────────┐   │
+    │   │ Username:            │   │
+    │   │ [________________]   │   │
+    │   │ Password:            │   │
+    │   │ [________________]   │   │
+    │   │                      │   │
+    │   │ [  LOGIN  ] [REGISTER]│  │
+    │   │                      │   │
+    │   │      status msg      │   │
+    │   │         ◌            │   │
+    │   └──────────────────────┘   │
+    └──────────────────────────────┘
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.clashgame.client.controller.LoginController"
+            prefWidth="800" prefHeight="600"
+            styleClass="login-bg"
+            stylesheets="@../css/game_style.css">
+
+    <center>
+        <VBox alignment="CENTER" spacing="20" maxWidth="400">
+            <padding>
+                <Insets top="50" right="50" bottom="50" left="50"/>
+            </padding>
+
+            <!-- Game Title -->
+            <Label text="⚔ CLASH OF CLANS MINI ⚔"
+                   style="-fx-text-fill: gold; -fx-font-size: 28; -fx-font-weight: bold;"/>
+
+            <Label text="Multiplayer Online Strategy Game"
+                   style="-fx-text-fill: #a0a0a0; -fx-font-size: 14;"/>
+
+            <Region prefHeight="20"/>
+
+            <!-- Login Form -->
+            <VBox spacing="10" styleClass="login-panel">
+
+                <Label text="Server IP"
+                       style="-fx-text-fill: #a0a0a0; -fx-font-size: 12;"/>
+                <TextField fx:id="serverIpField" promptText="Server IP (e.g. 192.168.1.100)"
+                           text="localhost"
+                           style="-fx-font-size: 13; -fx-pref-height: 30;"/>
+
+                <Region prefHeight="5"/>
+
+                <Label text="Username"
+                       style="-fx-text-fill: white; -fx-font-size: 14;"/>
+                <TextField fx:id="usernameField" promptText="Enter username"
+                           style="-fx-font-size: 14; -fx-pref-height: 35;"/>
+
+                <Label text="Password"
+                       style="-fx-text-fill: white; -fx-font-size: 14;"/>
+                <PasswordField fx:id="passwordField" promptText="Enter password (min 4 chars)"
+                               style="-fx-font-size: 14; -fx-pref-height: 35;"/>
+
+                <Region prefHeight="10"/>
+
+                <!-- Buttons -->
+                <HBox spacing="15" alignment="CENTER">
+                    <Button fx:id="loginButton" text="🔑 Login"
+                            onAction="#onLoginClicked"
+                            style="-fx-background-color: #4CAF50; -fx-text-fill: white;
+                                   -fx-font-size: 14; -fx-pref-width: 140; -fx-pref-height: 40;
+                                   -fx-background-radius: 5; -fx-cursor: hand;"/>
+
+                    <Button fx:id="registerButton" text="📝 Register"
+                            onAction="#onRegisterClicked"
+                            style="-fx-background-color: #2196F3; -fx-text-fill: white;
+                                   -fx-font-size: 14; -fx-pref-width: 140; -fx-pref-height: 40;
+                                   -fx-background-radius: 5; -fx-cursor: hand;"/>
+                </HBox>
+
+                <Region prefHeight="5"/>
+
+                <!-- Status -->
+                <Label fx:id="statusLabel" text=""
+                       style="-fx-text-fill: #ff6b6b; -fx-font-size: 12;"
+                       alignment="CENTER" maxWidth="Infinity"/>
+
+                <ProgressIndicator fx:id="loadingIndicator" prefWidth="30" prefHeight="30"
+                                   visible="false"/>
+            </VBox>
+
+            <Region prefHeight="20"/>
+            <Label text="v1.0 — Advanced OOP Project"
+                   style="-fx-text-fill: #555; -fx-font-size: 11;"
+                   alignment="CENTER" maxWidth="Infinity"/>
+        </VBox>
+    </center>
+</BorderPane>

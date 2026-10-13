@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    Battle History Screen
+    Controller: com.clashgame.client.controller.BattleHistoryController
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.clashgame.client.controller.BattleHistoryController"
+            prefWidth="800" prefHeight="600"
+            styleClass="game-bg"
+            stylesheets="@../css/game_style.css">
+
+    <!-- Top: Title Bar -->
+    <top>
+        <HBox spacing="20" alignment="CENTER" styleClass="top-bar">
+            <Label text="📜 Battle History" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="summaryLabel" text=""
+                   style="-fx-text-fill: #bdc3c7; -fx-font-size: 13;"/>
+        </HBox>
+    </top>
+
+    <!-- Center: Battle List -->
+    <center>
+        <VBox spacing="15" alignment="CENTER">
+            <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+
+            <Label fx:id="statusLabel" text="Loading battle history..."
+                   style="-fx-text-fill: #f39c12; -fx-font-size: 14;"/>
+
+            <ListView fx:id="battleListView" prefHeight="420"
+                      style="-fx-background-color: #34495e; -fx-control-inner-background: #34495e;
+                             -fx-font-size: 13;"/>
+        </VBox>
+    </center>
+
+    <!-- Bottom: Back Button -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 15;">
+            <Button text="← Back to Dashboard" onAction="#onBackClicked"
+                    style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-size: 14;
+                           -fx-background-radius: 5; -fx-cursor: hand;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

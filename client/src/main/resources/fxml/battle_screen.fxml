@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    Battle Screen Layout
+    Controller: com.clashgame.client.controller.BattleController
+    
+    Layout:
+    ┌──────────────────────────────────────────┐
+    │  ★☆☆   Timer: 02:45    Destruction: 32% │  ← HUD
+    ├──────────────────────────────────────────┤
+    │                                          │
+    │           BATTLE FIELD                   │
+    │           (Canvas 700x500)               │
+    │                                          │
+    │       Defender's base + attacking units   │
+    │                                          │
+    ├──────────────────────────────────────────┤
+    │  [Unit: ▼ BARBARIAN]  Count: 15  [Surrender]│  ← Unit tray
+    └──────────────────────────────────────────┘
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.clashgame.client.controller.BattleController"
+            prefWidth="800" prefHeight="650"
+            styleClass="game-bg"
+            stylesheets="@../css/game_style.css">
+
+    <!-- Top: Battle HUD -->
+    <top>
+        <HBox spacing="20" alignment="CENTER"
+              styleClass="battle-hud">
+            
+            <!-- Stars -->
+            <Label fx:id="starsLabel" text="☆☆☆"
+                   styleClass="star-label"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Timer -->
+            <Label fx:id="timerLabel" text="Time: 03:00"
+                   style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Destruction -->
+            <VBox spacing="2" alignment="CENTER">
+                <Label fx:id="destructionLabel" text="0%"
+                       style="-fx-text-fill: #e74c3c; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                <ProgressBar fx:id="destructionBar" progress="0" prefWidth="150"
+                             style="-fx-accent: #e74c3c;"/>
+            </VBox>
+        </HBox>
+    </top>
+
+    <!-- Center: Battle Canvas -->
+    <center>
+        <Canvas fx:id="battleCanvas" width="700" height="500"/>
+    </center>
+
+    <!-- Bottom: Unit Deployment Tray (Card-based) -->
+    <bottom>
+        <VBox spacing="5" styleClass="battle-tray">
+            <HBox spacing="8" alignment="CENTER">
+                <Label text="Deploy:"
+                       style="-fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold;"/>
+                <ScrollPane fitToHeight="true" style="-fx-background: transparent; -fx-background-color: transparent;
+                            -fx-border-color: transparent;" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER"
+                            prefHeight="80" HBox.hgrow="ALWAYS">
+                    <HBox fx:id="unitCardsTray" spacing="8" alignment="CENTER_LEFT"
+                          style="-fx-padding: 4;">
+                        <!-- Unit cards added dynamically -->
+                    </HBox>
+                </ScrollPane>
+                <Button fx:id="surrenderButton" text="🏳 Surrender"
+                        onAction="#onSurrenderClicked"
+                        styleClass="button-surrender"
+                        style="-fx-font-size: 11; -fx-background-radius: 5; -fx-cursor: hand;"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER">
+                <Label fx:id="unitCountLabel" text="Available: 0"
+                       style="-fx-text-fill: #95a5a6; -fx-font-size: 11;"/>
+                <Label text="Tap on map edges to deploy ▶"
+                       style="-fx-text-fill: #7f8c8d; -fx-font-size: 10;"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
